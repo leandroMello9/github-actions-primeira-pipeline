@@ -15,5 +15,14 @@ jobs:
         with:
           username: ${{secrets.DOCKERHUB_USERNAME}}
           password: ${{secrets.DOCKERHUB_PASSWORD}}
+      - name: Build e push da imagem Docker
+        uses: docker/build-push-action@v6.15.0
+        with:
+          context: ./src
+          file: ./src/Dockerfile
+          push: true
+          tags: |
+           leandromelo99/go-pipeline:v${{ github.run_number }}
+           leandromelo99/go-pipeline:latest
           
     
